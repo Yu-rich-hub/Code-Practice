@@ -5,6 +5,9 @@ def is_valid(chislo):
             return True
         else:
             return False
+    if chislo == 'stop':
+        print('Я тебя запомню!')
+        exit()
     else:
          return False
         
@@ -62,6 +65,7 @@ def is_lucky(wish):
              is_random()
              return
     if wish == 'stop':
+        print('Я тебя запомню!')
         exit()
     else:
          print('Я не понимаю твою иностранщину!')
