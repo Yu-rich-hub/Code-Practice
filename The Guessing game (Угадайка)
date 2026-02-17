@@ -1,29 +1,79 @@
-print('Ну Погнали')
-import random
-n = random.randint(0, 100)
-print('Я тут число загадал, попробуй угадать, ухаха')
-cnt = 0
-x = -1
-menshe = ['Борщишь малец, скинь чутка', 'Воу, воу, воу палегче', 'Многовато как то', 'Перебор((', 'Крутовато взял', 'Скромнее будь']
-bolshe = ['Пу-пу-пу, недобор', 'Уфф... слабовато', 'Бери выше', 'Ну и низко же ты пал', 'Скромняжка ты моя', 'Как на счёт поднять ?', 'Надо больше ....']
-while x != n:
-    x = int(input())
-    cnt += 1
-    if x > n:
-        print(random.choice(menshe))
-        print('Ещё попытка')
-        continue
+def is_valid(chislo):
+    if chislo.isdigit():
+        chislo = int(chislo)
+        if 0 < chislo < n:
+            return True
+        else:
+            return False
     else:
-        print(random.choice(bolshe))
-        print('Ещё попытка')
-        continue
+         return False
+        
+def is_random():
+    print('Ну Погнали')
+    import random
+    global n
+    n = random.randint(100, 1000)
+    z = random.randint(1, n)
 
-if cnt < 2:
-    print('Поздравляю! Ну и везучий же ты, чертяга!')
-    print(f'Угадано с {cnt}-ой попытки')
-elif 7 > cnt > 2:
-    print('Поздравляю! Не так уж и плохо, молодец.')
-    print(f'Угадано с {cnt}-ой попытки')
-else:
-    print(f'Поздравляю! Плюс {cnt} к упорству, минус {cnt} к удаче')
-    print(f'Угадано с {cnt}-ой попытки')
+    print(f'Я тут число загадал от 1 до {n-1}, попробуй угадать, Ухахаха!')
+    cnt = 0
+    x = 0
+    menshe = ['Борщишь малец, скинь чутка', 'Воу, воу, воу палегче', 'Многовато как то', 'Перебор((', 'Крутовато взял', 'Скромнее будь']
+    bolshe = ['Пу-пу-пу, недобор', 'Уфф... слабовато', 'Бери выше', 'Ну и низко же ты пал', 'Скромняжка ты моя', 'Как на счёт поднять?', 'Надо больше ....']
+    
+    while x != z:
+        cnt += 1
+        
+        chislo = input(f'Введи число от 1 до {n-1}  -  ')
+        if is_valid(chislo):
+             x = int(chislo)
+        else:
+             print(f'А может быть все-таки введем целое число от 1 до {n-1}?')
+             continue
+        if x > z:
+             print(random.choice(menshe))
+             print('Ещё попытка')
+             continue
+        else:
+             print(random.choice(bolshe))
+             print('Ещё попытка')
+             continue
+    if cnt < 3:
+         print('Поздравляю! Ну и везучий же ты, чертяга!')
+         print(f'Угадано с {cnt}-ой попытки')
+    if 7 > cnt > 2:
+        print('Поздравляю! Не так уж и плохо, молодец.')
+        print(f'Угадано с {cnt}-ой попытки')
+    else:
+        print(f'Поздравляю! Плюс {cnt} к упорству, минус {cnt} к удаче')
+        print(f'Угадано с {cnt}-ой попытки')
+
+    print()
+    print('Спасибо что развлек меня, было весело')
+    return
+
+def is_lucky(wish):
+    if wish in 'YyNn':
+        if wish == 'Y' or wish == 'y':
+             is_random()
+             return
+        else:
+             print('Мне очень жаль, но у тебя нет выбора! Ухаха!')
+             is_random()
+             return
+    if wish == 'stop':
+        exit()
+    else:
+         print('Я не понимаю твою иностранщину!')
+         print('Введи "y" если согласен или "n" если нет')
+         is_lucky(input())
+
+
+# Вступление!
+print('Приветствую тебя, Путник!')
+is_lucky(input('Хочешь испытать свою удачу?  y / n  - '))
+
+# Конец (для остановки набери stop)
+while True:
+    print('Хочешь сыграть ещё?')
+    is_lucky(input('y / n  - '))
