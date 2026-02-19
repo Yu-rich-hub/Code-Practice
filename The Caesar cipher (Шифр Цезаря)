@@ -1,0 +1,61 @@
+# блок Шифрования
+def is_kod():
+    kod = ''
+    if language == 'рус':
+        for i in s.lower():
+            if i.isalpha():
+                x = ord("а") + (ord(i) - ord("а") + 32 + step) % 32
+                kod += chr(x)
+            else:
+                kod += i
+        return kod
+    else:
+        if language == 'eng':
+            for i in s.lower():
+                if i.isalpha():
+                    x = ord("a") + (ord(i) - ord("a") + 26 + step) % 26
+                    kod += chr(x)
+                else:
+                    kod += i
+            return kod
+
+
+    
+# блок Дешифрования
+def is_dekod():
+    kod = ''
+    if language == 'рус':
+        for i in s.lower():
+            if i.isalpha():
+                x = ord("а") + (ord(i) - ord("а") + 32 - step) % 32
+                kod += chr(x)
+            else:
+                kod += i
+        return kod
+    else:
+        if language == 'eng':
+            for z in range(0, 26):
+                 for i in s.lower():
+                    if i.isalpha():
+                        x = ord("a") + (ord(i) - ord("a") + 26 - z) % 26
+                        kod += chr(x)
+                    else:
+                        kod += i
+            print(kod)
+
+s = input('Введите шифр -')
+
+print('Что требуется сделать? Зашифровать или Расшифровать?')
+work = input('Введи букву "ш" если требуется зашифроваь послание, или букву "д" если нужно расшифровать  -  ')
+
+print('На каком яыке шифр?')
+language = input('Введи "рус" если язык Русский, или "eng" если язык Английский  -  ')
+
+print('Какой шаг сдивига?')
+step = int(input('Введите число  -  '))
+
+if work == 'ш':
+    print(is_kod())
+else:
+    print(is_dekod())
+
